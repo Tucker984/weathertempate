@@ -14,7 +14,7 @@
 ini_set("include_path", '/home/bbbrow5/php:' . ini_get("include_path")  );
 
     
-    $APIkey = "###########"; // your API key
+    $APIkey = " vNK7r8-ngKqqrs6hwrGG3dbQ"; // your API key
     
     $url = "https://api.bloomsky.com/api/skydata";
 
