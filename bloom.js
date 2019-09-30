@@ -1,6 +1,6 @@
 header('Content-type: image/png');
 	
-	$APIkey = "";
+	$APIkey = " vNK7r8-ngKqqrs6hwrGG3dbQ";
 	$url = "https://api.bloomsky.com/api/skydata";
 
 	$opts = array(
