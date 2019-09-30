@@ -1,3 +1,6 @@
+<html>
+    <head>
+
 <?php
     
     // get the latest BloomSky Image file
@@ -31,3 +34,10 @@ ini_set("include_path", '/home/bbbrow5/php:' . ini_get("include_path")  );
     echo file_get_contents(  $imageURL );
     
 ?>
+
+        
+        </html>
+    </head>
+    
+    
+        
