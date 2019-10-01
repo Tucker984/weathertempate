@@ -7,28 +7,99 @@
    <body style="background-color:skyblue;">
    
   </style>
-  <script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>; <script>
+    
+$(document).ready(function(){
+  
+    $.ajax({
+        url: "https://api.weather.com/v2/pws/observations/current?stationId=KMAHANOV10&format=json&units=e&apiKey=f814f9d465db48a094f9d465db68a090";,
+        datatype: "jsonp",
+        success: function(parsed_json) {
+            var location = parsed_json['location']['city']; 
+            var temp_f = parsed_json['current_observation']['temp_f'];
+        $("#temp").text("Current temperature in " + location + " is: " + temp_f + " degree");   
+        }
+        
+         }); 
+    
+        $.ajax({
+        
+            url: "https://api.weather.com/v2/pws/observations/current?stationId=KMAHANOV10&format=json&units=e&apiKey=f814f9d465db48a094f9d465db68a090";,
+            datatype: "jsonp",
+            success: function(parsed_json){
+                var weather = parsed_json['forecast']['txt_forecast']['forecastday'];
+                for (index in weather) {
+                var newForecastString = 'Weather forecast for ' + weather[index]['title'] + ' is ' + weather[index]['fcttext_metric'];
+                var newForecastParagraph = $('<p/>').text(newForecastString);
+                $(".three").append(newForecastParagraph);
+                }
+            }
+            
+        });
+    
+        $.ajax({
+        
+            url: "http://api.wunderground.com/api/ff24502dcdc27a7a/forecast10day/q/CA/San_Diego.json";,
+            datatype: "jsonp",
+            success: function(parsed_json) {
+                var tenday = parsed_json['forecast']['txt_forecast']['forecastday'];
+                for (index in tenday) {
+                    var newDayString = 'Weather forecast for ' + tenday[index]['title'] + ' is ' + tenday[index]['fcttext_metric'];
+                var newDayParagraph = $('<p/>').text(newDayString);
+                $(".tenDay").append(newDayParagraph);
+                    }   
+                }
+            });
+    
+    $.ajax ({
+            url: "http://api.wunderground.com/api/ff24502dcdc27a7a/almanac/q/CA/San_Diego.json";,
+            datatype: "jsonp",
+            success: function(parsed_json){
+                var alma = parsed_json['almanac'];
+                for (index in alma) {
+                    var newAlma = 'The high today is: ' + alma['temp_high']['normal']['F'] + ' degrees, and the low is: ' + alma['temp_low']['normal']['F'] + ' degrees. ' + alma['temp_low']['record']['F'] + ' degrees is the record low. ' + alma['temp_high']['record']['F'] + ' degrees is the record high.'; 
+                    $(".almanac").text(newAlma);
+                }
+            }
+        });
+           
+        $.ajax({
+            url: "http://api.wunderground.com/api/ff24502dcdc27a7a/astronomy/q/CA/San_Diego.json";,
+            dataType: "jsonp",
+            success: function(parsed_json) {
+                var moon_phase = parsed_json['moon_phase'];
+                var astro_Data = {};
+                    astro_Data['Moon Ill'] = moon_phase['percentIlluminated'] + '%',
+                    astro_Data['Moon Age'] = moon_phase['ageOfMoon'],
+                    astro_Data['Current Time'] = moon_phase['current_time']['hour'] + ":" + moon_phase['current_time']['minute'],
+                    astro_Data['Sunrise'] = moon_phase['sunrise']['hour'] + ":" + moon_phase['sunrise']['minute'],
+                    astro_Data['Sunset'] = moon_phase['sunset']['hour'] + ":" + moon_phase['sunset']['minute'];
 
-heute=new Date(); 
-jahr=heute.getFullYear(); 
-monat=heute.getMonth()+1; 
-tag = heute.getDate()-1;
-
-jQuery(document).ready(function($) {
-  $.ajax({
-  url : "http://api.wunderground.com/api/ea1cb0c0f1995212/history_"+jahr+monat+tag+"/q/pws:INORDRHE156.json",
-  dataType : "jsonp",
-  success : function(parsed_json) {
-
-
- var minhumidity = parsed_json.history.dailysummary[0].minhumidity; 
- var day = parsed_json.history.dailysummary[0].date.pretty;
- document.getElementById("z8").innerHTML = minhumidity;
- document.getElementById("z9").innerHTML = date; 
-
-  }
-  });
+                for (index in astro_Data) {
+                if (astro_Data.hasOwnProperty(index)) {
+                var newAstroString = index + ': ' + astro_Data[index];
+                var newAstroParagraph = $('<p/>').text(newAstroString);
+                $(".astro").append(newAstroParagraph);
+                }
+            }
+            }
+            });
+    
+    
+    $.ajax({
+             url: "http://api.wunderground.com/api/ff24502dcdc27a7a/hourly/q/CA/San_Diego.json";,
+            datatype: "jsonp",
+            success: function(parsed_json){
+                var hourly = parsed_json['hourly_forecast'];
+            for(index in hourly){
+            var newHour = 'The hour is ' + hourly[index]['FCTTIME']['civil'] + ' and it is ' + hourly[index]['temp']['english'] + ' degrees. ';
+                $(".hourFore").text(newHour);
+    }
+            }
+        });
+            
 });
+
 </script>
   </body>
  </html>
