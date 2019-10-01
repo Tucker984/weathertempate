@@ -1,15 +1,34 @@
+<!DOCTYPE html>
 <body>
  <html>
-  <!DOCTYPE html>
-  
+ 
   <style>
   
    <body style="background-color:skyblue;">
    
   </style>
-  
-  
-  
+  <script>
+  var request = require('request');
+
+app.get('/radar.gif', function(req, res, next) {
+    var now = new Date();
+    if (radar.image == null || radar.time == null || now - radar.time > 10000) {
+        request('http://api.wunderground.com/api/f0d240f1a364bce0/radar/q/MI/Ida.gif?newmaps=1',
+            { encoding: null },
+            function(err, data, body) {
+                // todo - some error handling here, please!
+                res.set('Content-Type', 'image/gif');
+                radar.image = body;
+                res.send(radar.image);
+            }
+        );
+    }
+    else {
+        res.set('Content-Type', 'image/gif');
+        res.send(radar.image);
+    }
+});
+  </script>
   </body>
  </html>
   
