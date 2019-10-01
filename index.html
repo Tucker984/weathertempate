@@ -13,7 +13,7 @@
 app.get('/radar.gif', function(req, res, next) {
     var now = new Date();
     if (radar.image == null || radar.time == null || now - radar.time > 10000) {
-        request('http://api.wunderground.com/api/f0d240f1a364bce0/radar/q/MI/Ida.gif?newmaps=1',
+        request('http://api.wunderground.com/api/f814f9d465db48a094f9d465db68a090/radar/q/MI/Ida.gif?newmaps=1'
             { encoding: null },
             function(err, data, body) {
                 // todo - some error handling here, please!
