@@ -8,27 +8,28 @@
    
   </style>
   <script>
-  var request = require('request');
 
-app.get('/radar.gif', function(req, res, next) {
-    var now = new Date();
-    if (radar.image == null || radar.time == null || now - radar.time > 10000) {
-        request('http://api.wunderground.com/api/f814f9d465db48a094f9d465db68a090/radar/q/MI/Ida.gif?newmaps=1'
-            { encoding: null },
-            function(err, data, body) {
-                // todo - some error handling here, please!
-                res.set('Content-Type', 'image/gif');
-                radar.image = body;
-                res.send(radar.image);
-            }
-        );
-    }
-    else {
-        res.set('Content-Type', 'image/gif');
-        res.send(radar.image);
-    }
+heute=new Date(); 
+jahr=heute.getFullYear(); 
+monat=heute.getMonth()+1; 
+tag = heute.getDate()-1;
+
+jQuery(document).ready(function($) {
+  $.ajax({
+  url : "http://api.wunderground.com/api/ea1cb0c0f1995212/history_"+jahr+monat+tag+"/q/pws:INORDRHE156.json",
+  dataType : "jsonp",
+  success : function(parsed_json) {
+
+
+ var minhumidity = parsed_json.history.dailysummary[0].minhumidity; 
+ var day = parsed_json.history.dailysummary[0].date.pretty;
+ document.getElementById("z8").innerHTML = minhumidity;
+ document.getElementById("z9").innerHTML = date; 
+
+  }
+  });
 });
-  </script>
+</script>
   </body>
  </html>
   
