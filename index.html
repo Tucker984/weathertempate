@@ -1,17 +1,144 @@
 <!DOCTYPE html>
+<!--Your Name
+Date
+Month
+-->
+<html>
+<head>
+    <title>Weather API App</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
 <body>
- <html>
- 
-  <style>
-  
-   <body style="background-color:skyblue;">
-   
-  </style>
-     
-   
-  
- 
-  </body>
- </html>
-  
+
+    <div id="container">
+        <header>
+            <img class="logo" src="http://icons.wxug.com/logos/PNG/wundergroundLogo_4c_horz.png" alt="logo"/>
+            <h1>Your Awesome Forecast Page</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Weather</a></li>
+                    <li><a href="#">Conditions</a></li>
+                    <li><a href="#">Forecasts</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="conditions">
+            <h2>Current Conditions</h2>
+            <div class="window1">
+
+            </div>
+            <div class="window1">
+
+            </div>
+            <div class="window1">
+
+            </div>
+            <div class="window1">
+
+            </div>
+            <div class="window1">
+
+            </div>
+            <div class="window1">
+
+            </div>
+            <p>
+                <!--  1. Display the icon for the current conditions (observation)
+                2. Display weather
+                3. Display temperature in Ferinheiths
+                4. Display feels like temperature
+                5. Display relative humidity
+                6. Display wind direction
+                7. Display wind miles per hour
+            -->
+            </p>
+        </div>
+        <div class="hourly">
+            <h2>Your Hourly 1-day forecast</h2>
+            <p>
+            <!--  1. Display the Hourly 1-day forecast
+            2. Display the condition for each hour
+            3. Display the temperature for each hour
+            -->
+            </p>
+        </div>
+        <div class="7_day">
+            <h2>Your 7-day forecast</h2>
+            <p>
+            <!--    1. Display the 7-day forecast
+            2. Display the icon
+            3. Display weather
+            4. Display highs
+            5. Display lows
+        -->
+            </p>
+        </div>
+
+    </div><!--Closes Container-->
+    <script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>
+
+@charset "UTF-8";
+/* CSS Document */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:darkblue;
+}
+
+#container{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/*Header
+------------------------------*/
+header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 30px;
+}
+
+nav {
+    padding: 0;
+    margin: 0;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+}
+nav li {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+li a:hover {
+    color: white;
+}
+
+.logo {
+    width: 300px;
+    margin: 0;
+    display: inline-block;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0;
+    padding: 2%;
+}
   
