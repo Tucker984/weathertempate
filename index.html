@@ -15,15 +15,37 @@ Month
     <div id="container">
         <header>
             <img class="logo" src="http://icons.wxug.com/logos/PNG/wundergroundLogo_4c_horz.png" alt="logo"/>
-            <h1>Your Awesome Forecast Page</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Weather</a></li>
-                    <li><a href="#">Conditions</a></li>
-                    <li><a href="#">Forecasts</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
+            <h1>Current conditions</h1>
+        
+            <h4>weather reported by KTNCOLLI48</h4>
+            <caption><h5>current conditoins</h5></caption>
+            <td>Temp:</td>
+            <td>Dewpoint:</td>
+          <td>Relative Humidity:</td>
+         <td>Wind Speed:</td>
+         <td>Wind Direction:</td>    
+          <td>Barometric Pressure:</td>
+            
+            <script>
+         jQuery(document).ready(function($) 
+                                { $.ajax({ url : "http://api.wunderground.com/api/f814f9d465db48a094f9d465db68a090/geolookup/conditions/q/pws:KTNCOLLI48.json", 
+                                          dataType : "jsonp", success : function(parsed_json) 
+                                          { var time = parsed_json['current_observation']['observation_time'];
+                                           var time_offset = parsed_json['current_observation']['local_tz_offset']; 
+                                           var temp_f = parsed_json['current_observation']['temp_f']; var temp_c = parsed_json
+                                           ['current_observation']['temp_c']; var hum = parsed_json['current_observation']['relative_humidity']; 
+                                           var dewpoint = parsed_json['current_observation']['dewpoint_string']; var wind_speed = parsed_json
+                                           ['current_observation']['wind_mph']; var wind_knots = Math.round((wind_speed / 1.16) * 10) / 10; 
+                                           var wind_degrees = parsed_json['current_observation']['wind_degrees']; var baro = parsed_json
+                                           ['current_observation']['pressure_in']; var baro_trend = parsed_json['current_observation']['pressure_trend']; 
+                                           var baro_trend_text = "Can't calculate (I broke my abacus)"; if (baro_trend == "+") { baro_trend_text = "Going up, yay!"}; 
+                                           if (baro_trend == "-") { baro_trend_text = "Going down&hellip;"}; $( "#time_since_observed" ).replaceWith(time); $( "#offset" ).replaceWith("(UTC " + time_offset + ")"); $( "#current_temp" ).replaceWith(temp_f + " F (" + temp_c + " C)"); $( "#humidity" ).replaceWith(hum); $( "#dewpoint" ).replaceWith(dewpoint); $( "#wind_speed" ).replaceWith(wind_speed + " MPH (" + wind_knots + " knots)"); $( "#wind_direction" ).replaceWith("From " + wind_degrees + "&#176; true"); $( "#baro" ).replaceWith(baro + " inHg"); $( "#baro_trend" ).replaceWith(baro_trend_text); } }); }); 
+            </script>
+            
+   
+        
+        
+        
         </header>
         <div class="conditions">
             <h2>Current Conditions</h2>
