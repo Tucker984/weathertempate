@@ -1,25 +1,26 @@
-!DOCTYPE html>
-<html>
-<head>
-<title>Vremea</title>
- <meta charset="UTF-8">
-</head>
+<!DOCTYPE html>
+
 <body>
-<h1>Conditiile meteo</h1>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script>
-jQuery(document).ready(function($) {
-  $.ajax({
-  url : "https://api.weather.com/v2/pws/observations/current?stationId=KMAHANOV10&format=json&units=e&apiKey=f814f9d465db48a094f9d465db68a090",
-  dataType : "jsonp",
-  success : function(parsed_json) {
-  var location = parsed_json['location']['city'];
-  var temp_c = parsed_json['current_observation']['temp_c'];
-  $('#vremea').html(temp_c + '°C');
-  }
-  });
-});
-</script>
-<div id="vremea"></div>
-</body>
-</html>
+<html>
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+ </body>
+ </html>
